@@ -105,6 +105,9 @@
             this.pnlGrid.Size = new System.Drawing.Size(679, 461);
             this.pnlGrid.TabIndex = 1;
             this.pnlGrid.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlGrid_Paint);
+            this.pnlGrid.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlGrid_MouseDown);
+            this.pnlGrid.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlGrid_MouseMove);
+            this.pnlGrid.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlGrid_MouseUp);
             // 
             // Form1
             // 

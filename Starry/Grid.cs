@@ -10,6 +10,9 @@ namespace Starry
     {
         public int Width { get; set; }
         public int Height { get; set; }
+        public Node CurrentNode { get; set; }
+        public Node StartNode { get; set; }
+        public Node EndNode { get; set; }
 
         private Node[,] nodes;
 
@@ -22,7 +25,7 @@ namespace Starry
 
             for (int x = 0; x < Width; x++) {
                 for (int y = 0; y < Height; y++) {
-                    nodes[x, y] = new Node();
+                    nodes[x, y] = new Node(x, y);
                 }
             }
         }

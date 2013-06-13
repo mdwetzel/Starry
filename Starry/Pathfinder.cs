@@ -9,69 +9,113 @@ namespace Starry
     public class Pathfinder
     {
         public static List<Node> Open { get; set; }
+        public static List<Node> Closed { get; set; }
         private static Node current;
 
         static Pathfinder()
         {
             Open = new List<Node>();
+            Closed = new List<Node>();
         }
 
         public Pathfinder()
         {
             Open = new List<Node>();
+            Closed = new List<Node>();
         }
 
-        public static void Find(Grid grid)
+        public static bool ProcessNode(Node end, Node current, Node nodeToCheck)
         {
-            Open.Add(grid.StartNode);
+            if (!nodeToCheck.Walkable || Closed.Contains(nodeToCheck)) {
+                return false;
+            }
 
-            current = grid.StartNode;
+            Color openColor = Color.Orange;
 
-            Node nodeToCheck;
+
+            if (Open.Contains(nodeToCheck)) {
+                Node onList = Open.Find(n => n == nodeToCheck);
+
+                if (onList.G > nodeToCheck.G + 10) {
+                    onList.G = nodeToCheck.G + 10;
+                    onList.H = (Math.Abs(nodeToCheck.X - end.X) + Math.Abs(nodeToCheck.Y - end.Y)) * 10;
+                    onList.F = onList.G + onList.H;
+
+                    onList.Parent = current;
+                }
+            } else {
+                nodeToCheck.Color = openColor;
+                nodeToCheck.G = current.G + 10;
+                nodeToCheck.H = (Math.Abs(nodeToCheck.X - end.X) + Math.Abs(nodeToCheck.Y - end.Y)) * 10;
+                nodeToCheck.F = nodeToCheck.G + nodeToCheck.H;
+                nodeToCheck.Parent = current;
+                Open.Add(nodeToCheck);
+            }
+
+            return true;
+        }
+
+        public static void Find(Grid grid, Node currentNode)
+        {
+            Node end = grid.EndNode;
+
+            Color openColor = Color.Orange;
+
+            int lowestScore = Int32.MaxValue;
+            Node lowest = null;
+            foreach (Node node in Open) {
+
+                if (node.F <= lowestScore) {
+                    lowestScore = node.F;
+                    lowest = node;
+                }
+
+            }
+            Open.Remove(lowest);
+
+            Closed.Add(lowest);
 
             // Left.
-            nodeToCheck = grid[current.X - 1, current.Y];
-            if (current.X > 0 && nodeToCheck.Walkable) {
-                nodeToCheck.Color = Color.Red;
-                Open.Add(nodeToCheck);
-                // Right.
-            }
+            Node nodeToCheck = grid[currentNode.X - 1, currentNode.Y];
+            ProcessNode(grid.EndNode, currentNode, nodeToCheck);
 
-            nodeToCheck = grid[current.X + 1, current.Y];
-            if (nodeToCheck.X < grid.Width && nodeToCheck.Walkable) {
-                nodeToCheck.Color = Color.Plum;
-                Open.Add(grid[current.X + 1, current.Y]);
-            }
+            // Right.
+            nodeToCheck = grid[currentNode.X + 1, currentNode.Y];
+            ProcessNode(grid.EndNode, currentNode, nodeToCheck);
+            // Up
+            nodeToCheck = grid[currentNode.X, currentNode.Y - 1];
+            ProcessNode(grid.EndNode, currentNode, nodeToCheck);
+            // Down.
+            nodeToCheck = grid[currentNode.X, currentNode.Y + 1];
+            ProcessNode(grid.EndNode, currentNode, nodeToCheck);
 
-            // Up.
-            if (current.Y > 0 && grid[current.X, current.Y - 1].Walkable) {
-                Open.Add(grid[current.X, current.Y - 1]);
-                // Down.
-            }
-            if (grid[current.X, current.Y + 1].Walkable) {
-                Open.Add(grid[current.X, current.Y + 1]);
-            }
-
+            nodeToCheck = grid[currentNode.X - 1, currentNode.Y - 1];
             // Up-left
-            if (current.X > 0 && current.Y > 0 && grid[current.X - 1, current.Y - 1].Walkable) {
-                Open.Add(grid[current.X - 1, current.Y - 1]);
-            }
+            ProcessNode(grid.EndNode, currentNode, nodeToCheck);
 
+
+            nodeToCheck = grid[currentNode.X + 1, currentNode.Y - 1];
             // Up-right
-            if (current.X < grid.Width && current.Y > 0 && grid[current.X + 1, current.Y - 1].Walkable) {
-                Open.Add(grid[current.X - 1, current.Y + 1]);
-            }
+            ProcessNode(grid.EndNode, currentNode, nodeToCheck);
 
+            nodeToCheck = grid[currentNode.X - 1, currentNode.Y + 1];
             // Down-left
-            if (current.X > 0 && current.Y < grid.Height && grid[current.X - 1, current.Y + 1].Walkable) {
-                Open.Add(grid[current.X - 1, current.Y + 1]);
+            ProcessNode(grid.EndNode, currentNode, nodeToCheck);
+
+
+            nodeToCheck = grid[currentNode.X + 1, currentNode.Y + 1];
+            // Down-right
+            ProcessNode(grid.EndNode, currentNode, nodeToCheck);
+            
+            if (lowest == end) {
+                return;
             }
 
-            // Down-right
-            if (current.X < grid.Width && current.Y < grid.Height && grid[current.X + 1, current.Y + 1].Walkable) {
-                Open.Add(grid[current.X + 1, current.Y + 1]);
-                grid[current.X + 1, current.Y + 1].Color = Color.Blue;
+            if (Open.Count == 0) {
+                return;
             }
+
+            Find(grid, lowest);
         }
     }
 }

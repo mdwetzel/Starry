@@ -1,0 +1,23 @@
+c:\users\mark\documents\visual studio 2010\Projects\Starry\Starry\obj\x86\Debug\Starry.Form1.resources
+c:\users\mark\documents\visual studio 2010\Projects\Starry\Starry\obj\x86\Debug\Starry.Properties.Resources.resources
+c:\users\mark\documents\visual studio 2010\Projects\Starry\Starry\obj\x86\Debug\Starry.csproj.GenerateResource.Cache
+c:\users\mark\documents\visual studio 2010\Projects\Starry\Starry\bin\Debug\Starry.exe
+c:\users\mark\documents\visual studio 2010\Projects\Starry\Starry\bin\Debug\Starry.pdb
+c:\users\mark\documents\visual studio 2010\Projects\Starry\Starry\obj\x86\Debug\Starry.exe
+c:\users\mark\documents\visual studio 2010\Projects\Starry\Starry\obj\x86\Debug\Starry.pdb
+P:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.exe
+P:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.pdb
+P:\Dropbox\Visual Studio\Starry\Starry\bin\Debug\Starry.exe
+P:\Dropbox\Visual Studio\Starry\Starry\bin\Debug\Starry.pdb
+P:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.Form1.resources
+P:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.Properties.Resources.resources
+P:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.csproj.GenerateResource.Cache
+P:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.csprojResolveAssemblyReference.cache
+H:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.exe
+H:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.pdb
+H:\Dropbox\Visual Studio\Starry\Starry\bin\Debug\Starry.exe
+H:\Dropbox\Visual Studio\Starry\Starry\bin\Debug\Starry.pdb
+H:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.csprojResolveAssemblyReference.cache
+H:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.Form1.resources
+H:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.Properties.Resources.resources
+H:\Dropbox\Visual Studio\Starry\Starry\obj\x86\Debug\Starry.csproj.GenerateResource.Cache

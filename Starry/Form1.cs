@@ -11,7 +11,7 @@ namespace Starry
 {
     public partial class Form1 : Form
     {
-        Grid grid = new Grid(40, 40);
+        Grid grid = new Grid(80, 80);
         bool placing = false;
 
         public Form1()
@@ -33,7 +33,7 @@ namespace Starry
 
                 Node n = grid[e.X / Node.Size, e.Y / Node.Size];
 
-                n.Walkable = n.Walkable ? false : true;
+                n.Walkable = !n.Walkable;
 
                 n.Color = n.Walkable ? Color.Gray : Color.Green;
 
@@ -47,12 +47,17 @@ namespace Starry
 
                     grid.StartNode = grid[e.X / Node.Size, e.Y / Node.Size];
 
+                    grid.StartNode.Color = Color.Green;
+
                 } else {
                     grid[e.X / Node.Size, e.Y / Node.Size].IsEndNode = true;
 
                     grid.EndNode = grid[e.X / Node.Size, e.Y / Node.Size];
 
-                    Pathfinder.Find(grid);
+                    grid.EndNode.Color = Color.Red;
+
+                    Pathfinder.Open.Add(grid.StartNode);
+                    Pathfinder.Find(grid, grid.StartNode);
                 }
             }
 
